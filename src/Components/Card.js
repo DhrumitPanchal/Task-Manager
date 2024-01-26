@@ -69,6 +69,7 @@ function Card() {
           onChange={(e) => handleInput(e)}
           value={todo.title}
           type="text"
+          required
           className="px-[1rem] py-[.2rem] w-full rounded-[.4rem] border-[2px] font-medium text-[1.2rem] border-black/50 focus:border-[#6060e3] placeholder:text-black/60"
           placeholder="Title"
         />
@@ -77,6 +78,7 @@ function Card() {
           onChange={(e) => handleInput(e)}
           value={todo.description}
           rows={3}
+          required
           type="text"
           className="px-[1rem] py-[.2rem] w-full rounded-[.4rem] border-[2px] font-normal text-[1.2rem] border-black/50 focus:border-[#6060e3] placeholder:text-black/70"
           placeholder="Description"
@@ -85,6 +87,7 @@ function Card() {
           name="endingDate"
           onChange={(e) => handleInput(e)}
           value={todo.endingDate}
+          required
           min="2024-01-24"
           type="date"
           className="px-[1rem] py-[.2rem]  w-full rounded-[.4rem] border-[2px] font-medium text-[1.2rem] border-black/50 focus:border-[#6060e3] placeholder:text-black/60"

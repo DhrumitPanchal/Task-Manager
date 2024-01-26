@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { useContext } from "react";
 import { UserContext } from "../FireBase/Context";
 import { Link } from "react-router-dom";
 function LoginPage() {
-  const { createUser, SignIn, SignINWithGoogle } = useContext(UserContext);
+  const { user, createUser, SignIn, SignINWithGoogle } =
+    useContext(UserContext);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -14,6 +15,22 @@ function LoginPage() {
   const handleInput = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  useEffect(() => {
+    window.addEventListener("DOMContentLoaded", () => {
+      const cookies = document.cookie.split(";").map((cookie) => cookie.trim());
+      const userDataCookie = cookies.find((cookie) =>
+        cookie.startsWith("userData=")
+      );
+
+      if (userDataCookie) {
+        // Extract user details from the cookie
+        console.log("cookie is : " + JSON.parse(userDataJSON));
+        const userDataJSON = decodeURIComponent(userDataCookie.split("=")[1]);
+        const user = JSON.parse(userDataJSON);
+        navigator("/");
+      }
+    });
+  }, []);
   return (
     <div className="fixed flex justify-center items-center max-sm:flex-col top-0 left-0 h-screen w-full ">
       <div className="max-sm:hidden flex justify-center items-center w-1/2">

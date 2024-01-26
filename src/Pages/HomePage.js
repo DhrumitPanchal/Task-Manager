@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { UserContext } from "../FireBase/Context";
 import { useNavigate } from "react-router-dom";
 function HomePage() {
-  const { user, tasks, getTasks } = useContext(UserContext);
+  const { user, tasks, getTasks, SignIn } = useContext(UserContext);
   const navigator = useNavigate();
 
   useEffect(() => {
@@ -13,6 +13,8 @@ function HomePage() {
     if (!user) {
       return navigator("/login");
     }
+    let userData = JSON.stringify(user);
+    document.cookie = `userData=${userData}; path=/`;
   }, []);
 
   return (

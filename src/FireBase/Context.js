@@ -1,5 +1,5 @@
 import React, { useState, createContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { json, useNavigate } from "react-router-dom";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -41,7 +41,9 @@ export default function Mycontext(props) {
       toast.success("User registered successfully");
       navigator("/");
     } catch (error) {
-      toast.error(error.message);
+      const errorMessage = "Firebase: Error (auth/invalid-email).";
+      const errorCode = errorMessage.split("(auth/")[1].split(")")[0];
+      toast.error(errorCode);
     }
   };
 
@@ -60,12 +62,18 @@ export default function Mycontext(props) {
       };
 
       setUser(loggedInUser); // Set the user details in the state
-      console.log("User Is : ", loggedInUser);
-      console.log("hook is : ", user);
+
+      const userJSON = JSON.stringify(user);
+
+      // Set the user details in a cookie named 'userData'
+
       toast.success("login Success");
+
       navigator("/");
     } catch (error) {
-      toast.error(error.message);
+      const errorMessage = "Firebase: Error (auth/invalid-email).";
+      const errorCode = errorMessage.split("(auth/")[1].split(")")[0];
+      toast.error(errorCode);
     }
   };
 
@@ -74,17 +82,19 @@ export default function Mycontext(props) {
       .then((result) => {
         const userCredential = GoogleAuthProvider.credentialFromResult(result);
         const loggedInUser = {
-          uid: userCredential.user?.uid,
-          email: userCredential.user?.email,
+          uid: result.user?.uid,
+          email: result.user?.email,
         };
 
+        console.log(result.user);
         setUser({ ...loggedInUser });
         toast.success("login Success");
         navigator("/");
       })
       .catch((error) => {
-        const errorMessage = error.message;
-        toast.error(errorMessage);
+        const errorMessage = "Firebase: Error (auth/invalid-email).";
+        const errorCode = errorMessage.split("(auth/")[1].split(")")[0];
+        toast.error(errorCode);
       });
   };
 
@@ -92,6 +102,10 @@ export default function Mycontext(props) {
     try {
       if (!user) {
         navigator("/login");
+        return;
+      }
+      if (!title || !description || !endingDate) {
+        toast.error("All filed is required");
         return;
       }
 
@@ -121,8 +135,9 @@ export default function Mycontext(props) {
 
       navigator("/");
     } catch (error) {
-      const message = error.message;
-      toast.error(message);
+      const errorMessage = "Firebase: Error (auth/invalid-email).";
+      const errorCode = errorMessage.split("(auth/")[1].split(")")[0];
+      toast.error(errorCode);
     }
   };
 
@@ -140,15 +155,15 @@ export default function Mycontext(props) {
           id: key,
           ...value,
         }));
-        console.log(arrayOfObjects);
 
         if (arrayOfObjects) {
-          console.log("Data : " + arguments);
           setTasks(arrayOfObjects);
         }
       }
     } catch (error) {
-      console.error("Error fetching tasks:", error);
+      const errorMessage = "Firebase: Error (auth/invalid-email).";
+      const errorCode = errorMessage.split("(auth/")[1].split(")")[0];
+      toast.error(errorCode);
     }
   };
 
@@ -172,9 +187,9 @@ export default function Mycontext(props) {
       toast.success("Task updated successfully");
       navigator("/");
     } catch (error) {
-      console.error("Error updating task:", error);
-      const message = error.message;
-      toast.error(message);
+      const errorMessage = "Firebase: Error (auth/invalid-email).";
+      const errorCode = errorMessage.split("(auth/")[1].split(")")[0];
+      toast.error(errorCode);
     }
   };
 
@@ -195,8 +210,9 @@ export default function Mycontext(props) {
         return null;
       }
     } catch (error) {
-      console.error("Error fetching task:", error);
-      return null;
+      const errorMessage = "Firebase: Error (auth/invalid-email).";
+      const errorCode = errorMessage.split("(auth/")[1].split(")")[0];
+      toast.error(errorCode);
     }
   };
 
