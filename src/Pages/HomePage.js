@@ -23,7 +23,7 @@ function HomePage() {
       <section className="w-full px-[4rem] max-sm:px-[1.6rem] min-h-[calc(100vh-3.4rem)] pt-[1rem] pb-[2rem] bg-[#fbfcfd]">
         <nav className="flex items-center justify-between">
           <div className="px-[.2rem] flex items-center gap-[.4rem]">
-            <img className="h-[2.1rem]" src="./Images/appLogo.svg" alt="" />
+            <img className="h-[2.1rem]" src="./Images/AppLogo.svg" alt="" />
             <h2 className="logo text-[1.6rem] font-semibold ">Taskify</h2>
           </div>
           <Link to={"/card"}>
