@@ -2,23 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&family=Playfair+Display&display=swap");
 
-html{
-    font-size: 1vw;
-    scroll-behavior: smooth;
-  }
-  *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    outline: none;
-    text-decoration: none;
-  }
+html {
+  font-size: 1vw;
+  scroll-behavior: smooth;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  text-decoration: none;
+}
+.logo {
+  font-family: "Playfair Display", serif;
+  font-family: "PT Sans Narrow", sans-serif;
+}
 
-
-  @media  screen and (max-width:500px) {
-    html{
-      font-size: 3.4vw;
-    }
+@media screen and (max-width: 500px) {
+  html {
+    font-size: 3.4vw;
   }
-  
+}

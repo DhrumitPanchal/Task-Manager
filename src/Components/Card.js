@@ -12,7 +12,10 @@ function Card() {
     endingDate: "",
     status: "Todo",
   });
-
+  const date = new Date();
+  let todayDate =
+    date.getFullYear() + "-" + date.getMonth() + 1 + "-" + date.getDate();
+  console.log(todayDate);
   const navigator = useNavigate();
 
   useEffect(() => {
@@ -63,14 +66,17 @@ function Card() {
 
   return (
     <div className="fixed flex justify-center items-center top-0 left-0 h-screen w-full bg-black/20">
-      <div className="p-[2.4rem] max-sm:mx-[2rem] max-sm:p-[2rem] flex flex-col gap-[1rem]  w-[30rem] max-sm:w-full h-[22rem] rounded-[1.6rem] bg-[#fbfcfd]">
+      <div className="p-[2.4rem] max-sm:p-[2rem] flex flex-col gap-[1rem]  w-[30rem] max-sm:w-full h-[24rem] max-sm:h-screen rounded-[1.6rem] max-sm:rounded-none bg-[#fbfcfd]">
+        <h2 className="ml-[.2rem] text-[1.4rem] font-semibold">
+          Add task details
+        </h2>
         <input
           name="title"
           onChange={(e) => handleInput(e)}
           value={todo.title}
           type="text"
           required
-          className="px-[1rem] py-[.2rem] w-full rounded-[.4rem] border-[2px] font-medium text-[1.2rem] border-black/50 focus:border-[#6060e3] placeholder:text-black/60"
+          className="px-[1rem] py-[.2rem] w-full rounded-[.4rem] border-[2px] font-medium text-[1.2rem] bg-transparent border-black/20 focus:border-[#6060e3] placeholder:text-black/60"
           placeholder="Title"
         />
         <textarea
@@ -80,7 +86,7 @@ function Card() {
           rows={3}
           required
           type="text"
-          className="px-[1rem] py-[.2rem] w-full rounded-[.4rem] border-[2px] font-normal text-[1.2rem] border-black/50 focus:border-[#6060e3] placeholder:text-black/70"
+          className="px-[1rem] py-[.2rem] w-full rounded-[.4rem] border-[2px] font-normal text-[1.2rem] bg-transparent border-black/20 focus:border-[#6060e3] placeholder:text-black/70"
           placeholder="Description"
         />
         <input
@@ -88,11 +94,11 @@ function Card() {
           onChange={(e) => handleInput(e)}
           value={todo.endingDate}
           required
-          min="2024-01-24"
+          min={todayDate}
           type="date"
-          className="px-[1rem] py-[.2rem]  w-full rounded-[.4rem] border-[2px] font-medium text-[1.2rem] border-black/50 focus:border-[#6060e3] placeholder:text-black/60"
+          placeholder="Deadline"
+          className="px-[1rem] py-[.2rem]  w-full rounded-[.4rem] border-[2px] font-medium text-[1.2rem] bg-transparent border-black/20 focus:border-[#6060e3] placeholder:text-black/20"
         />
-
         <div className="flex justify-between mt-[1rem]">
           {ID && (
             <div
